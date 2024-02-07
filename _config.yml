@@ -15,9 +15,9 @@ minimal_mistakes_skin    : "contrast" # "air", "aqua", "contrast", "dark", "dirt
 
 # Site Settings
 locale                   : "ko-KR"
-title                    : ""
+title                    : "기록하는 개발자"
 title_separator          : #"|"
-subtitle                 : #""
+subtitle                 : ""
 name                     : "joseph.c"
 description              : ""
 url                      : "https://joseph-cha.github.io"
@@ -97,11 +97,11 @@ author:
   avatar           : "/assets/images/profile_image.jpg"
   bio              : ""
   location         : "South Korea"
-  email            :
+  email            : "joseph.c@kakao.com"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      # url: "mailto:your.name@email.com"
+      url: "mailto:joseph.c@kakao.com"
     - label: "Website"
       icon: "fas fa-fw fa-link"
       # url: "https://your-website.com"
@@ -113,7 +113,7 @@ author:
       # url: "https://facebook.com/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      # url: "https://github.com/"
+      url: "https://github.com/Joseph-Cha"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       # url: "https://instagram.com/"

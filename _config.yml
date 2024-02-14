@@ -15,13 +15,13 @@ minimal_mistakes_skin    : "contrast" # "air", "aqua", "contrast", "dark", "dirt
 
 # Site Settings
 locale                   : "ko-KR"
-title                    : "기록하는 개발자"
+title                    : "코드와 함께하는 여정"
 title_separator          : #"|"
-subtitle                 : ""
+subtitle                 : "내 개발 이야기"
 name                     : "joseph.c"
 description              : ""
 url                      : "https://joseph-cha.github.io"
-baseurl                  : "/blog" # the subpath of your site, e.g. "/blog"
+baseurl                  : "/blog/" # the subpath of your site, e.g. "/blog"
 repository               : "Joseph-Cha/Joseph-Cha.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : "/assets/images/profile_image.jpg" # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
@@ -97,7 +97,6 @@ author:
   avatar           : "/assets/images/profile_image.jpg"
   bio              : ""
   location         : "South Korea"
-  email            : "joseph.c@kakao.com"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
@@ -116,7 +115,7 @@ author:
       url: "https://github.com/Joseph-Cha"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
-      # url: "https://instagram.com/"
+      url: "https://instagram.com/dong.hun_c/"
 
 # Site Footer
 footer:
@@ -143,7 +142,6 @@ footer:
 
 # Reading Files
 include:
-  - .htaccess
   - _pages
 exclude:
   - "*.sublime-project"
@@ -276,8 +274,14 @@ defaults:
       layout: single
       author_profile: true
       read_time: true
-      comments: # true
+      comments: true
       share: true
       related: true
-      show_date: true
-      date_format: "%Y-%m-%d"
+  # _pages
+  - scope:
+      path: "_pages"
+      type: pages
+    values:
+      layout: single
+      author_profile: true
+

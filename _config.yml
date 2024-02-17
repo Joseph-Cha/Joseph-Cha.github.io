@@ -95,7 +95,7 @@ analytics:
 author:
   name             : "joseph.c"
   avatar           : "/assets/images/profile_image.jpg"
-  bio              : "\"진정한 지식의 가치는 그것을 나눌 때 드러납니다.\" - 토마스 아퀴나스"
+  bio              : "진정한 지식의 가치는 그것을 나눌 때 드러납니다."
   location         : "South Korea"
   links:
     - label: "Email"

@@ -6,6 +6,9 @@ const padStart = str => ("0" + str).slice(-2);
 const dateObj = new Date();
 const date = `${dateObj.getFullYear()}-${padStart(
   dateObj.getMonth() + 1
+
+
+  
 )}-${padStart(dateObj.getDate())}`;
 const banner = `/*!
  * Minimal Mistakes Jekyll Theme ${pkg.version} by ${pkg.author}

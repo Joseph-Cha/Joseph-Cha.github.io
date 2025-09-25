@@ -1,0 +1,93 @@
+@startuml StatefulWidget_Basic_Lifecycle
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam roundcorner 15
+skinparam shadowing false
+skinparam defaultTextAlignment center
+skinparam activityFontSize 12
+skinparam activityFontStyle bold
+
+title StatefulWidget 기본 생명주기
+
+start
+:StatefulWidget 생성자 실행;
+note right
+  위젯 인스턴스 생성
+end note
+
+:createState() 호출;
+note right
+  State 객체 생성
+end note
+
+partition "State 생명주기" #LightBlue {
+  :initState() 호출;
+  note right
+    **한 번만 실행**
+    초기화 작업 수행
+  end note
+
+  :didChangeDependencies() 호출;
+  note right
+    의존성 변경 시 호출
+    예: Theme, Locale 변경
+  end note
+
+  :dirty 상태로 설정;
+  note right
+    build() 재실행 필요 표시
+  end note
+
+  :build() 실행;
+  note right
+    **UI 렌더링**
+    Widget 트리 구성
+  end note
+
+  :clean 상태로 설정;
+  note right
+    렌더링 완료 상태
+  end note
+
+  repeat
+    :위젯 활성 상태 유지;
+
+    if (외부 변경 발생?) then (didUpdateWidget)
+      :didUpdateWidget() 호출;
+      note right
+        부모에서 새 매개변수 전달
+      end note
+      :dirty 설정;
+      :build() 재실행;
+      :clean 설정;
+    elseif (내부 상태 변경?) then (setState)
+      :setState() 호출;
+      note right
+        내부 상태 변경
+      end note
+      :dirty 설정;
+      :build() 재실행;
+      :clean 설정;
+    else (변경 없음)
+    endif
+  repeat while (위젯 활성?) is (yes)
+  -> no;
+
+  :deactivate() 호출;
+  note right
+    위젯 트리에서 제거 시작
+    일시적 또는 영구적 제거
+  end note
+
+  :dispose() 호출;
+  note right
+    **리소스 정리**
+    - Timer 정리
+    - Controller 해제
+    - 메모리 정리
+  end note
+}
+
+stop
+
+@enduml

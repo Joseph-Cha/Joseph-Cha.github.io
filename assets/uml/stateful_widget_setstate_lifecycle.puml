@@ -1,0 +1,67 @@
+@startuml StatefulWidget_SetState_Lifecycle
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam roundcorner 15
+skinparam shadowing false
+skinparam defaultTextAlignment center
+skinparam activityFontSize 12
+skinparam activityFontStyle bold
+
+title setState() 호출 시 생명주기
+
+start
+
+:사용자 액션 또는 이벤트 발생;
+note right
+  예: 버튼 클릭, 타이머 이벤트,
+  네트워크 응답 등
+end note
+
+partition "setState 사이클" #LightYellow {
+  :setState(() { ... }) 호출;
+  note right
+    **상태 변경 알림**
+    - 클로저 내부에서 상태 변경
+    - 프레임워크에 rebuild 요청
+    - 동기적으로 실행됨
+  end note
+
+  if (setState 내부에서\n상태 변경 수행) then (성공)
+    :상태 변수 업데이트;
+    note right
+      예: counter++, isLoading = false 등
+    end note
+  else (실패)
+    :에러 발생;
+    note right
+      dispose 후 setState 호출 시
+      "setState() called after dispose()" 에러
+    end note
+    stop
+  endif
+
+  :dirty 상태로 설정;
+  note right
+    **build() 재실행 마킹**
+    다음 프레임에서 재빌드 예약
+  end note
+
+  :build() 재실행;
+  note right
+    **변경된 상태 반영**
+    - 새로운 상태로 UI 구성
+    - 위젯 트리 업데이트
+    - 애니메이션 트리거 가능
+  end note
+
+  :clean 상태로 설정;
+  note right
+    UI 업데이트 완료
+  end note
+}
+
+:사용자에게 변경된 UI 표시;
+
+stop
+
+@enduml

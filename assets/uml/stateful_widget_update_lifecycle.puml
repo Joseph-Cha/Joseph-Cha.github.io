@@ -1,0 +1,59 @@
+@startuml StatefulWidget_Parameter_Update_Lifecycle
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam roundcorner 15
+skinparam shadowing false
+skinparam defaultTextAlignment center
+skinparam activityFontSize 12
+skinparam activityFontStyle bold
+
+title StatefulWidget 매개변수 변경 시 생명주기
+
+start
+
+:부모 위젯에서 새로운 매개변수로\nStatefulWidget 재생성;
+note right
+  예: MyWidget(color: Colors.red)
+  -> MyWidget(color: Colors.blue)
+end note
+
+partition "State 업데이트 사이클" #LightGreen {
+  :didUpdateWidget(oldWidget) 호출;
+  note right
+    **매개변수 비교 및 처리**
+    - oldWidget과 현재 위젯 비교
+    - 필요한 상태 업데이트 수행
+    - 애니메이션 등 부수 효과 처리
+  end note
+
+  if (매개변수 변경으로 인한\n상태 변경 필요?) then (yes)
+    :내부 상태 업데이트;
+    note right
+      controller, 내부 변수 등 업데이트
+    end note
+  else (no)
+    :상태 유지;
+  endif
+
+  :dirty 상태로 설정;
+  note right
+    build() 재실행 스케줄링
+  end note
+
+  :build() 재실행;
+  note right
+    **새로운 매개변수 반영**
+    변경된 UI 구성
+  end note
+
+  :clean 상태로 설정;
+  note right
+    렌더링 완료
+  end note
+}
+
+:위젯 정상 동작 계속;
+
+stop
+
+@enduml
